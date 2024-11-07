@@ -11,3 +11,6 @@ class Solution:
                 return [i, diff_map[diff]]
             else:
                 diff_map[nums[i]] = i 
+
+        # Time Complexity: O(n)
+        # Space Complexity: O(n)
