@@ -1,24 +1,28 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) % 2 != 0:
-            return False
-
-        stack = []
-        hashmap = {
-            ')' : '(',
-            '}' : '{',
-            ']' : '['
+        # iterate through string, if char is an open parenthesis add to stack 
+        # if char is a close parenthesis check if its mapped open parenthesis pair is on top of the stack
+        # if the paired open parenthesis is on top of the stack, pop and continue process
+        # if stack is empty paranthesis is valid
+        par_dict = {
+            ')': '(', 
+            '}':'{',
+            ']':'['
         }
+        par_stack = []
 
-        for c in s:
-            if c in hashmap:
-                if stack and hashmap[c] == stack[-1]:
-                    stack.pop()
+        for char in s:
+            if char in par_dict:
+                if par_stack and par_stack[-1] == par_dict[char]:
+                    par_stack.pop()
                 else:
                     return False
             else:
-                stack.append(c)
+                par_stack.append(char)
 
-        return not stack
-         
+        return not par_stack
 
+    # Time Complexity O(n)
+    # Space Complexity O(n)
+
+        
