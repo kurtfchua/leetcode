@@ -1,26 +1,21 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        # have 2 pointers left and right
-        # with pointers iterate through nums
-        # left and right will increment if the next number is different from both
-        # otherwise if its a repeated number we increment right only
-        # so left will hold the most updated unique value and right will find the next unique number
-        # we then return left at the end since the amount of increments will be the amount of times we find a unique number
-
-        # we start at index 1 becaue the first element will always be the first unique number
-        left = 1
-        right = 1
+        # iterate through nums with left, right pointers
+        # left will be the most recent unique value we have found
+        # right will be the value to find the next unique when incrementing
+        # if nums[right] != nums[right -1] we have found the next unique value
+        # then we reassign nums[left] to the nums[right] to replace this value with the most updated unique value
+        # otherwise its a repeated elem and we must increment right by 1 to find the next unique value
+        left = right = 1
 
         while right < len(nums):
-            # check if next elem is equal to curr elem
-            if nums[right] != nums[right-1]:
-                # update both left and right ++1
+            if nums[right] != nums[right - 1]:
                 nums[left] = nums[right]
-                left +=1
-                right +=1
+                left+=1
+                right+=1
             else:
-                # find next unique elem
-                right+= 1
-        # left will hold the number of unique elems we found in nums
+                right+=1
+            
         return left
+
         
