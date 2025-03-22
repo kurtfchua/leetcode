@@ -1,18 +1,19 @@
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        # implement two pointer technique i, j being slow and fast pointers
-        # if j != val we swap nums[i] and nums[j] and increment both
-        # otherwise we increment j to find the next elem != val
-        # resulting list will swap all elems != val to the first k elements
-        # i will hold the amount of times we've swaped 
-        i = j = 0
-        
-        while j < len(nums):
-            if nums[j] != val:
-                nums[i] = nums[j]
-                i+=1
-                j+=1
+        # iterate nums using 2 pointers, left and right
+        # right pointer will keep track of elements != val
+        # it will update in the either case 
+        # in the case that elem != val, nums[left] = nums[right]
+        # then we update left accordingly by 1
+
+        left = right = 0
+
+        while right < len(nums):
+            if nums[right] != val:
+                nums[left] = nums[right]
+                left +=1
+                right+=1
             else:
-                j+=1
+                right+=1
         
-        return i
+        return left 
