@@ -27,4 +27,7 @@ class Solution:
         
         return len(stack) == 0
 
+        # Space Complexity: We create a stack in the worst case will copy all of the string, O(n)
+        # Time Complexity: We need to go through the entire string to check if it is valid, O(n)
+
         
