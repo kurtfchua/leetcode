@@ -16,4 +16,4 @@ class Solution:
         return nums + nums
 
         # Space Complexity: O(n)
-        # TIme Complexity: O(n)
+        # Time Complexity: O(n)
