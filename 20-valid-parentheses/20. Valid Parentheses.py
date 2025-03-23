@@ -1,28 +1,30 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        # iterate through string, if char is an open parenthesis add to stack 
-        # if char is a close parenthesis check if its mapped open parenthesis pair is on top of the stack
-        # if the paired open parenthesis is on top of the stack, pop and continue process
-        # if stack is empty paranthesis is valid
-        par_dict = {
-            ')': '(', 
-            '}':'{',
-            ']':'['
-        }
-        par_stack = []
+        # use stack to keep track of the updated 
+        # closing parenthesis when new opening parentheisis is found
+        # when we encounter a closing parenthesis, 
+        # we check if it is equal to the elem on top of stack
+        # otherwise we return False
+        # we use a dictionary to keep track of the pairs
+        # if stack size is 0 all parenthesis are closed properly ahd we return True
+        # otherwise return False
 
+        stack = []
+        dict = {
+                "(": ")",
+                "[": "]",
+                "{":"}"
+                    }
+        
         for char in s:
-            if char in par_dict:
-                if par_stack and par_stack[-1] == par_dict[char]:
-                    par_stack.pop()
+            if char in dict:
+                stack.append(dict[char])
+            else:
+                if stack and stack[-1] == char:
+                    stack.pop()
                 else:
                     return False
-            else:
-                par_stack.append(char)
-
-        return not par_stack
-
-    # Time Complexity O(n)
-    # Space Complexity O(n)
+        
+        return len(stack) == 0
 
         
