@@ -14,3 +14,6 @@ class Solution:
 
         # Approach 2
         return nums + nums
+
+        # Space Complexity: O(n)
+        # TIme Complexity: O(n)
