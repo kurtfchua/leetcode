@@ -23,8 +23,7 @@ class Solution:
             current.next = prev
             prev = current
             current = next_node
-
+        
         return prev
-
         # Space Complexity: We do this in-place without using any new data structure, O(1)
         # Time Complexity: We must traverse through the entire linked list to reverse pointers, O(n)
