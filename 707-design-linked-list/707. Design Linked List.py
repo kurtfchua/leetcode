@@ -18,12 +18,18 @@ class MyLinkedList:
             current = current.next
         
         return current.val
+
+        # S O(1): We don't create any new structures
+        # T O(n): We iterate through the list until we get to our index
         
     def addAtHead(self, val: int) -> None:
         new_node = Node(val)
         new_node.next = self.head.next
         self.head.next = new_node
         self.size +=1
+        
+        # S O(1): We don't use any new structures relative to input size
+        # T O(1): We already know where head is. We instantly access it
 
     def addAtTail(self, val: int) -> None:
         current = self.head
@@ -32,6 +38,9 @@ class MyLinkedList:
         new_node = Node(val)
         current.next = new_node
         self.size +=1        
+
+        # S O(1): We don't use any new structures relative to input size
+        # T O(n): We have to iterate through the entire list to add a new tail
 
     def addAtIndex(self, index: int, val: int) -> None:
         if index > self.size:
@@ -44,6 +53,9 @@ class MyLinkedList:
         current.next = new_node
         self.size +=1
         
+        # S O(1): We don't use any new data structures relative to input size
+        # T O(n): We must iterate through list until we get to our index
+
     def deleteAtIndex(self, index: int) -> None:
         if index >= self.size:
             return
@@ -52,6 +64,9 @@ class MyLinkedList:
             current = current.next
         current.next = current.next.next
         self.size -=1
+        
+        # S O(1): We don't use any new data structures relative to input size
+        # T O(n): We must iterate through list until we get to our index
 
 
 # Your MyLinkedList object will be instantiated and called as such:
