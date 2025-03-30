@@ -28,6 +28,9 @@ class MyLinkedList:
 
         return current.val
 
+        # S O(1)
+        # T O(n)
+
     def addAtHead(self, val: int) -> None:
         # create new node with new value
         # new node will be pointed to dummy.next
@@ -42,6 +45,9 @@ class MyLinkedList:
         self.head.next = new_node
         self.size += 1   
 
+        # S O(1)
+        # T O(1)
+
     def addAtTail(self, val: int) -> None:
         # create new node with val
         # get dummy.prev to point next to new node
@@ -55,6 +61,8 @@ class MyLinkedList:
         self.tail.prev = new_node
         self.size += 1
 
+        # S O(1)
+        # T O(1)
 
     def addAtIndex(self, index: int, val: int) -> None:
         # iterate through list until we get to before the index
@@ -77,6 +85,9 @@ class MyLinkedList:
         new_node.prev = current
         current.next = new_node
         self.size += 1
+
+        # S O(1)
+        # T O(n)
         
     def deleteAtIndex(self, index: int) -> None:
         # iterate through list from dummy node until before the index
@@ -95,6 +106,10 @@ class MyLinkedList:
         current.next = elim_node.next
         elim_node.next.prev = current
         self.size -= 1        
+
+        # S O(1)
+        # T O(n)
+        
 # Your MyLinkedList object will be instantiated and called as such:
 # obj = MyLinkedList()
 # param_1 = obj.get(index)
