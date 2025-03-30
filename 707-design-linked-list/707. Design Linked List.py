@@ -1,4 +1,5 @@
 class Node:
+
     def __init__(self, val):
         self.val = val
         self.next = None
@@ -10,65 +11,74 @@ class MyLinkedList:
         self.size = 0
 
     def get(self, index: int) -> int:
-        if index < 0 or index >= self.size:
-            return -1
+        # Start iterating from dummy head node until index
+        # return value of the current node
         
+        # if index is out of range return -1
+        if index >= self.size: return -1
+
+        # Start at actual first none dummy node
         current = self.head.next
         for _ in range(index):
             current = current.next
-        
+
         return current.val
 
-        # S O(1): We don't create any new structures
-        # T O(n): We iterate through the list until we get to our index
-        
     def addAtHead(self, val: int) -> None:
+        # create new node with new value
+        # new node will be pointed to dummy.next
+        # dummy.next will point to new node
+        # increment size
+
         new_node = Node(val)
         new_node.next = self.head.next
         self.head.next = new_node
-        self.size +=1
-        
-        # S O(1): We don't use any new structures relative to input size
-        # T O(1): We already know where head is. We instantly access it
+        self.size += 1   
 
     def addAtTail(self, val: int) -> None:
+        # start iterating from dummy node until we get to tail
+        # assign tail.next to new node
+        # increment size
+
         current = self.head
         while current.next:
             current = current.next
         new_node = Node(val)
-        current.next = new_node
-        self.size +=1        
-
-        # S O(1): We don't use any new structures relative to input size
-        # T O(n): We have to iterate through the entire list to add a new tail
+        current.next = new_node       
+        self.size += 1
 
     def addAtIndex(self, index: int, val: int) -> None:
-        if index > self.size:
-            return
+        # iterate through list until we get to before the index
+        # create new node with val
+        # assign new_node.next to current.next
+        # assign current.next to new node
+        # increment size
+
+        # if index > size don't insert
+        if index > self.size: return 
+
         current = self.head
         for _ in range(index):
             current = current.next
         new_node = Node(val)
         new_node.next = current.next
         current.next = new_node
-        self.size +=1
+        self.size += 1
         
-        # S O(1): We don't use any new data structures relative to input size
-        # T O(n): We must iterate through list until we get to our index
-
     def deleteAtIndex(self, index: int) -> None:
-        if index >= self.size:
-            return
-        current = self.head
+        # iterate through list from dummy node until before the index
+        # assign current.next to current.next.next
+        # decrement size
+
+        # if index >= size we don't delete anything
+        if index >= self.size: return 
+
+        current = self.head 
         for _ in range(index):
             current = current.next
         current.next = current.next.next
-        self.size -=1
+        self.size -= 1
         
-        # S O(1): We don't use any new data structures relative to input size
-        # T O(n): We must iterate through list until we get to our index
-
-
 # Your MyLinkedList object will be instantiated and called as such:
 # obj = MyLinkedList()
 # param_1 = obj.get(index)
