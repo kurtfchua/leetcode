@@ -1,54 +1,82 @@
-class PageNode:
-    # node that holds information for our page
-    def __init__(self, val, prev=None, next=None):
-        self.val = val
-        self.prev = prev
-        self.next = None
-
+"""
 class BrowserHistory:
-    
-    def __init__(self, homepage: str):
-        # initially set our current page to homepage
-        self.current = PageNode(homepage)
 
-        # S O(m) m being avg length of all page strings
-        # S O(1) just assigning pointers
+    def __init__(self, homepage: str):
+        
 
     def visit(self, url: str) -> None:
-        # create new page with url
-        # assign the current.next page to new page
-        # set new page prev to current
-        # set the current page to new page
-        new_page = PageNode(url, self.current, None)
-        self.current.next = new_page
-        self.current = new_page
-
-        # S O(m*n) n nodes every call with m avg str lengths
-        # T O(1) we only reassign pointer values
+        
 
     def back(self, steps: int) -> str:
-        # decrement x steps from current page
-        # check if current.prev exists to get to our boundary
-        # return url val
+        
+
+    def forward(self, steps: int) -> str:
+class BrowserHistory:
+
+    def __init__(self, homepage: str):
+        
+
+    def visit(self, url: str) -> None:
+        
+
+    def back(self, steps: int) -> str:
+        
+
+    def forward(self, steps: int) -> str:
+"""
+
+# Linked List
+class PageNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+        self.prev = None
+    
+class BrowserHistory:
+
+    def __init__(self, homepage: str):
+        # init homepage to current value
+        self.current = PageNode(homepage)
+        
+        # S O(m) where m is the average of all the page names in the list
+        # T O(1) only assigning values
+
+    def visit(self, url: str) -> None:
+        # create new page node with url name
+        # assign self.current -> <-page node
+        # assign self.current to the new node
+        new_node = PageNode(url)
+        self.current.next = new_node
+        new_node.prev = self.current
+        self.current = new_node
+        
+        # S O(m*n) where m is the size of the str and n is the amount of visit calls
+        # T O(1) just assigning values
+
+    def back(self, steps: int) -> str:
+        # while current.prev exists iterate until we reach available steps
         while self.current.prev and steps > 0:
             self.current = self.current.prev
             steps -= 1
-        return self.current.val
-        
-        # S O(1) no new data structures used
-        # T O(min(n, steps)) either go back x steps or n available steps
-        
-    def forward(self, steps: int) -> str:
-        # increment x steps from current page
-        # check if current.next exists to get to our boundary
-        # return url val
-        while self.current.next and steps > 0:
-            self.current = self.current.next
-            steps -= 1
+
         return self.current.val
 
-        # S O(1) no new data structures used
-        # T O(min(n, steps)) either go forward x steps or n available steps
+        # S O(1) we don't create new data strutures
+        # T O(min(steps, n)) where n is the actual amount of possible shifting
+        
+    def forward(self, steps: int) -> str:
+        # while current.next exists iterate until we reach available steps
+        while self.current.next and steps:
+            self.current = self.current.next 
+            steps -= 1
+        
+        return self.current.val
+
+        # S O(1) we don't create new data structures
+        # T O(min(steps, n)) where n is the actual amount of possible shifting
+
+        
+
 
 # Your BrowserHistory object will be instantiated and called as such:
 # obj = BrowserHistory(homepage)
