@@ -1,30 +1,4 @@
 """
-class BrowserHistory:
-
-    def __init__(self, homepage: str):
-        
-
-    def visit(self, url: str) -> None:
-        
-
-    def back(self, steps: int) -> str:
-        
-
-    def forward(self, steps: int) -> str:
-class BrowserHistory:
-
-    def __init__(self, homepage: str):
-        
-
-    def visit(self, url: str) -> None:
-        
-
-    def back(self, steps: int) -> str:
-        
-
-    def forward(self, steps: int) -> str:
-"""
-
 # Linked List
 class PageNode:
     def __init__(self, val):
@@ -74,8 +48,69 @@ class BrowserHistory:
 
         # S O(1) we don't create new data structures
         # T O(min(steps, n)) where n is the actual amount of possible shifting
+class BrowserHistory:
 
+    def __init__(self, homepage: str):
         
+
+    def visit(self, url: str) -> None:
+        
+
+    def back(self, steps: int) -> str:
+        
+
+    def forward(self, steps: int) -> str:
+"""
+# Stack
+class BrowserHistory:
+    
+
+    def __init__(self, homepage: str):
+        # back stack will hold the current page and all the urls before the current page
+        # front stack will hold all the urls after the current page
+        self.back_history = [homepage]
+        self.forward_history = []
+
+        # S O(m) where m is the average length of all urls
+        # T O(1) only assigning values
+        
+    def visit(self, url: str) -> None:
+        # append new url to back
+        # clear front history
+        self.back_history.append(url)
+        self.forward_history = []
+        
+        # S O(m*n) where m is the average length of urls and n is the amount of visits
+        # T O(1) list append and assigning values are constant time
+
+    def back(self, steps: int) -> str:
+        # pop values from back history and append into front history
+        # last value in front history should contain the most updated current val
+
+        # while back history has at least one value left we pop until available steps
+        while len(self.back_history) > 1 and steps > 0:
+            self.forward_history.append(self.back_history.pop())
+            steps -= 1
+        
+        return self.back_history[-1]
+
+        # S O(1) no new data structures are being used
+        # T O(min(n, steps)) the smaller of steps and actual n steps back taken
+
+    def forward(self, steps: int) -> str:
+        # pop values from front history and append into back history
+        # last popped value from front will be the most current page
+
+        # while front history has at least one value we move forward available steps
+        while len(self.forward_history) > 0 and steps > 0:
+            self.back_history.append(self.forward_history.pop())
+            steps -= 1
+        
+        return self.back_history[-1]
+
+        # S O(1) no new data structures are used
+        # T O(min(n, steps)) the smaller between steps and actual n steps forward taken
+
 
 
 # Your BrowserHistory object will be instantiated and called as such:
