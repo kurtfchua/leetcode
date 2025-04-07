@@ -10,6 +10,7 @@ class Solution:
                 prefs_dict[pref] +=1
             else:
                 prefs_dict[pref] = 1
+                
         for sandwhich in sandwiches:
             if prefs_dict.get(sandwhich, 0) > 0:
                 prefs_dict[sandwhich] -= 1
