@@ -1,24 +1,25 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        # iterate nums using 2 pointer technique, left and right
-        # right will update whenever the next elem is different from the last 
-        # right will update whenever the next elem is the same as well
-        # left will only update whenever the first condition is met
-        # we then update nums[left] -> nums[right] when we find the next unqiue element
-        # left will have the amount of unqiue elements there are
-
-        left = right = 1
-
-        while right < len(nums):
-            if nums[right-1] != nums[right]:
-                nums[left] = nums[right]
-                left+=1
-                right+=1
+        # iterate through the array using 2 pointers i and j 
+        # i will hold the next elem that needs to be swapped
+        # j will hold the next unique eleme found
+        # we swap arr[i] and arr[j] when arr[j] != arr[j-1], unique elem found
+        # then increment i and j to perform next swap
+        # otherwise we increment j to find next unique element
+        # i is therefore boundary of the sorted array, return i to get the amount
+       
+        # we start at 1, first elem is already sorted
+        i = j = 1
+        while j < len(nums):
+            if nums[j] != nums[j-1]:
+                nums[i] = nums[j]
+                i +=1
+                j +=1
             else:
-                right+=1
+                j +=1
         
-        return left
-
+        return i 
+    
 
 
         
