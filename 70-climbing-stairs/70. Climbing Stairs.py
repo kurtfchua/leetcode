@@ -13,5 +13,5 @@ class Solution:
             return memo[n]
         return dfs(n)
 
-        # T O(2^n): we add a new level of 2 new nodes to the recursion tree with each call from a step
+        # T O(n): we memo each result after exploring the longest branch. each subproblem is solved once
         # S O(n): n is the maximum depth of the tree we travel when collapsing the call stack
