@@ -19,6 +19,9 @@ class Solution:
                 j +=1
         
         return i 
+
+        # T O(n) we have to iterate the array just once 
+        # S O(1) this is done in place, no new data structures were used 
     
 
 
