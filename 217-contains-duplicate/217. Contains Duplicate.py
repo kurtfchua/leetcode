@@ -13,4 +13,7 @@ class Solution:
                 dup_set.add(num)
         
         return False
+
+        # T O(n): we have to iterate through entire nums to find duplicates
+        # S O(n): we create a new set of size O(n)
         
