@@ -11,4 +11,7 @@ class Solution:
         
         return len(alpha_set) == 26
 
+        # T O(n) worst case we iterate through entire list to find all letters
+        # S O(1) set may never grow past size 26
+
         
