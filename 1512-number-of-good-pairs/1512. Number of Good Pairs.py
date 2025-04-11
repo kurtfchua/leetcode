@@ -1,14 +1,13 @@
 class Solution:
     def numIdenticalPairs(self, nums: List[int]) -> int:
-        # iterate through nums and for each num iterate through list to find match of num
-        # if match exists increment count 
-        count = 0
+        # we get frequency of each num in nums as we iterate
+        # with each element found can create pairs with all equal elements before it
+        # we add its frequency to counts
+        nums_freq = {}
+        counts = 0 
 
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                if nums[j] == nums[i]:
-                    count+=1
+        for num in nums: 
+            counts += nums_freq.get(num, 0)
+            nums_freq[num] = nums_freq.get(num, 0) + 1
         
-        return count
-
-        
+        return counts
