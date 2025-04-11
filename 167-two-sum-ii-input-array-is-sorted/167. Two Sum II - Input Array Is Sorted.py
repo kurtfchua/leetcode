@@ -10,10 +10,13 @@ class Solution:
             sum = numbers[i] + numbers[j]
             if sum == target:
                 return [i+1, j+1]
-            if sum < target: 
+            elif sum < target: 
                 i += 1
-            if sum > target: 
+            else:
                 j -= 1
+        
+        # T O(n): we iterate through all elements to find pair whose sum == target
+        # S O(1): we don't use any extra data structures 
         
     
         
