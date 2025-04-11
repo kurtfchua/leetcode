@@ -11,14 +11,20 @@ class Solution:
         while i < j:
             if not s[i].isalnum():
                 i += 1
+                continue
             if not s[j].isalnum():
                 j -= 1
+                continue
             
             if s[i].isalnum() and s[j].isalnum():
                 if s[i].lower() != s[j].lower():
                     return False
                 i += 1
                 j -=1 
+
         return True 
-         
+
+        # T O(n): we iterate through all the elements in the string
+        # S O(1): we check string in place, no new data structures were used
+
                        
