@@ -21,6 +21,6 @@ class Solution:
         return True
 
         # T O(m+n): we must iterate through both strings to find out if they're anagrams
-        # S O(k): where k is the amount of unique characters in string m 
+        # S O(1): at most it would have 26 unique keys
 
         
