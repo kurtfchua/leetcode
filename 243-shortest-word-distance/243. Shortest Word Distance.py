@@ -1,23 +1,26 @@
 class Solution:
     def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
-        # if we find word1 or word 2 in list first, find the other word and calc diff
-        # update diff if smaller than current diff
-        # return diff
-        i = 0 
+        # set two indexes to -1, to say we haven't found them yet
+        # set min_diff to be infinite
+        # iterate through wordsDict and update the indexes whenever we find word1 and word2
+        # when indexes aren't -1 we set min_diff to be the smaller between min_diff and new diff
+        # constantly calculate the min_diff and compare while indexes for the words change
+        # return min_diff
+        index1 = index2 = -1
         min_diff = float('inf')
 
-        while i < len(wordsDict):
-            if wordsDict[i] == word1: 
-                for j in range(i +1, len(wordsDict)):
-                    if wordsDict[j] == word2:
-                        if min_diff != 0 and abs(j-i) < min_diff:
-                            min_diff = abs(j-i)
-            if wordsDict[i] == word2: 
-                for j in range(i +1, len(wordsDict)):
-                    if wordsDict[j] == word1:
-                        if min_diff != 0 and abs(j-i) < min_diff:
-                            min_diff = abs(j-i)
-            i += 1
+        for i in range(len(wordsDict)):
+            if wordsDict[i] == word1:
+                index1 = i
+            if wordsDict[i] == word2:
+                index2 = i
+            if index1 != -1 and index2 != -1:
+                min_diff = min(min_diff, abs(index2-index1))
+
         return min_diff
+
+        # T O(n): we must iterate through list to find all instances of word1 and word2
+        # S O(1): done in-place, no new data structures were used
+
 
         
