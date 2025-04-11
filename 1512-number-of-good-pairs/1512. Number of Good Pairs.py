@@ -11,3 +11,6 @@ class Solution:
             nums_freq[num] = nums_freq.get(num, 0) + 1
         
         return counts
+
+        # T O(n): we must iterate through all of nums to get frequencies of nums
+        # S O(n): we create dictionary that grows relative to nums
