@@ -3,7 +3,7 @@ class Solution:
         # create a dictionary holding the counts for the first string
         # now iterate through the second string subtracting the value in the dict by 1
         # if value is at 0 or value doesn't exist it is not an anagram
-        # otherwise return True
+        # check if all dict values are 0 at the end
         s_dict = {}
 
         for c in s:
@@ -17,8 +17,10 @@ class Solution:
         for val in s_dict.values():
             if val != 0:
                 return False
-                
+
         return True
 
+        # T O(m+n): we must iterate through both strings to find out if they're anagrams
+        # S O(k): where k is the amount of unique characters in string m 
 
         
