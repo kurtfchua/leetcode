@@ -21,3 +21,6 @@ class Solution:
             i -= 1
 
         return result 
+
+        # T O(n): we must iterate through all of nums to build the new list
+        # S O(n): we create a new list that is the same size as nums
