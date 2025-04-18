@@ -18,4 +18,7 @@ class Solution:
                 i += 1
 
         return nums
+
+        # T O(n): We iterate through nums 2 separate times. Once to get counts and once to reassign values from counts.
+        # S O(1): Counts is defined by our range of numbers that we already knew beforehand, it doesn't grow with the list.
          
