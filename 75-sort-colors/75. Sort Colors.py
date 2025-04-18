@@ -3,22 +3,24 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # bucket sort
-        counts = [0,0,0] # use 0,1,2 as keys when iterating through nums
+        self.quick_sort(nums, 0, len(nums)-1)
 
-        for num in nums:
-            counts[num] += 1
+    def quick_sort(self, arr, start, end):
+        if start >= end: 
+            return arr
         
-        # reassign elements in numbs while iterating through counts
+        pivot = arr[end]
+        j = start
 
-        i = 0
-        for n in range(len(counts)):
-            for _ in range(counts[n]):
-                nums[i] = n
-                i += 1
+        for i in range(start, end):
+            if arr[i] < pivot:
+                arr[j], arr[i] = arr[i], arr[j]
+                j += 1
 
-        return nums
+        arr[j], arr[end] = arr[end], arr[j]
+        
+        self.quick_sort(arr, start, j-1)
+        self.quick_sort(arr, j+1, end)
 
-        # T O(n): We iterate through nums 2 separate times. Once to get counts and once to reassign values from counts.
-        # S O(1): Counts is defined by our range of numbers that we already knew beforehand, it doesn't grow with the list.
-         
+        return arr
+        
