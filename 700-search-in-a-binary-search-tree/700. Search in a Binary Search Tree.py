@@ -14,5 +14,8 @@ class Solution:
             return self.searchBST(root.left, val)
         else:
             return self.searchBST(root.right, val)
+
+    # T O(logn) For each iteration we half the possible values in the BST to look for val
+    # T O(h) Recursive call travels from root to the deepest possible node in the tree
         
         
