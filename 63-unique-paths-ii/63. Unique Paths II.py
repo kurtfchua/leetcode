@@ -23,6 +23,27 @@ class Solution:
             
             return cache[r][c]
         
-        cache = [[0]*n for _ in range(m)]
+        def dp(rows, cols):
+            prev_row = [0 for _ in range(cols)]
 
-        return memoization(0,0,m,n,cache)
+            for r in range(rows-1, -1, -1):
+                current_row = [0 for _ in range(cols)] 
+        
+                for c in range(cols-1, -1, -1):
+                    if r == rows - 1 and c == cols - 1:
+                        current_row[c] = 1
+                    elif obstacleGrid[r][c] == 1:
+                        current_row[c] = 0
+                    else:
+                        right_dir = current_row[c+1] if c + 1 < cols else 0
+                        down_dir = prev_row[c]
+                        current_row[c] = right_dir + down_dir
+                        
+                prev_row = current_row
+
+            return prev_row[0]
+        
+        #cache = [[0]*n for _ in range(m)]
+        #return memoization(0,0,m,n,cache)
+
+        return dp(m,n)
