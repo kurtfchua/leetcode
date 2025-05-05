@@ -10,5 +10,5 @@ class Solution:
         return False
 
         # S O(n) - we pass through nums once and add to the set
-        # T O(n). - we create a set that grows linearly with nums
+        # T O(n) - we create a set that grows linearly with nums
         
