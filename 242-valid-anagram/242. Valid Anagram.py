@@ -18,4 +18,7 @@ class Solution:
                 return False
         
         return True
+
+        # T O(m+n) - we must iterate through both strings to see if they are anagrams of each other. 
+        # S O(m) - we create a hashmap as large as string s
         
