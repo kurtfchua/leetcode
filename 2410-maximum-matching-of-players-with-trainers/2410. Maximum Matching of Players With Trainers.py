@@ -1,7 +1,7 @@
 class Solution:
     def matchPlayersAndTrainers(self, players: List[int], trainers: List[int]) -> int:
-        players = sorted(players)
-        trainers = sorted(trainers)
+        players.sort()
+        trainers.sort()
         i = j = 0
         matches = 0
         while i < len(players) and j <len(trainers):
