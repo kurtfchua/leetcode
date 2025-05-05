@@ -16,4 +16,6 @@ class Solution:
         
         return res
 
+        # T O(m*n*logn) - where m is the length of strs and each sort takes nlogn time.
+        # S O(m*n) - we create a hashmap that holds all the sorted words as keys. and each word has n average length.
         
