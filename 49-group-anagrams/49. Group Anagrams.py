@@ -1,21 +1,17 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # keep a hashmap to store the sorted values of strs as keys
-        # if sorted value is in the hashmap we append the unsorted value
-        # if not we initiate the value with this unsorted string
-        # we then iterate through all the values and append them to a list and return
+        # initialize a hashmap to store all anagrams as values
+        # tuple from 0..25 will hold counts of each char in word
+        # return values of hashmap as a list
         anagrams = defaultdict(list)
-
-        for word in strs:
-            sorted_word = ''.join(sorted(word))
-            anagrams[sorted_word].append(word)
+        for word in strs: 
+            count = [0] * 26
+            for c in word: 
+                count[ord(c)-ord('a')] += 1
+            anagrams[tuple(count)].append(word)
         
-        res = []
-        for v in anagrams.values():
-            res.append(v)
-        
-        return res
+        return list(anagrams.values())
 
-        # T O(m*n*logn) - where m is the length of strs and each sort takes nlogn time.
-        # S O(m*n) - we create a hashmap that holds all the sorted words as keys. and each word has n average length.
+        # T O(m*n) - we iterate through every word in the list and then every char in each word. m being the length of the list and n being the average length of each word
+        # S O(m*n) - we create a hashmap that grows linearly with the word list. each word is on average n length.
         
