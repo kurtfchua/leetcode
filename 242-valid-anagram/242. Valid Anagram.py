@@ -7,9 +7,10 @@ class Solution:
         
         for c in t:
             index = ord(c)-ord('a')
+            counts[index] -= 1
             if counts[index] < 0:
                 return False
-            counts[index] -= 1
+            
         
         return not any(counts)
         
