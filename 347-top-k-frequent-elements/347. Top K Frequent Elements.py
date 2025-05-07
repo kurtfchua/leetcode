@@ -19,5 +19,8 @@ class Solution:
         
         return res
 
+        # T O(n) - each for loop is iterating through the length of the list. except the last for loop where we touch each element in the list only once. the entire nested for loop is O(n).
+        # S O(n) - we create a hashmap, bucket and res lists of size n.
+
 
         
