@@ -2,23 +2,29 @@ class Codec:
     def encode(self, strs: List[str]) -> str:
         """Encodes a list of strings to a single string.
         """
-        # for each string add chr(24) at end
-        # append each new string to last string
-        encoded_string = ""
+        encoded = []
         for word in strs:
-            word+= chr(24)
-            encoded_string+=word
-        
-        return encoded_string
-
+            encoded.append(str(len(word))+"#"+word)
+        return ''.join(encoded)
+    
     def decode(self, s: str) -> List[str]:
         """Decodes a single string to a list of strings.
         """
-        # split string by delimiter chr(24)
-        decoded_string = s.split(chr(24))
-        if not decoded_string[-1]:
-            decoded_string.pop()
-        return decoded_string
+        res = []    
+        i = j = 0
+
+        while i < len(s):
+            while s[j] != "#":
+                j+=1
+            length = int(s[i:j])
+            decoded_word = s[j+1:j+length+1]
+            res.append(decoded_word)
+            i=j+length+1
+            j=i
+        
+        return res
+
+    # 
 
 
 # Your Codec object will be instantiated and called as such:
