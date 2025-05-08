@@ -10,9 +10,9 @@ class Solution:
             max_left = max(max_left,height[i])
 
         for i in range(len(height)-1,-1,-1):
-            suffix.appendleft(max_right)
+            suffix.append(max_right)
             max_right = max(max_right, height[i])
-        list(suffix)
+        suffix.reverse()
 
         count = 0
         for i in range(len(height)):
