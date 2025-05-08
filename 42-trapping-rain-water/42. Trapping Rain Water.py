@@ -22,4 +22,6 @@ class Solution:
         
         return count
 
+        # T O(n): we have to iterate through height to build the prefix and suffix lists and then get count
+        # S O(n): we build prefix and suffix lists that grow lineraly with the input
 
