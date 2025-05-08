@@ -1,27 +1,18 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        prefix = []
-        suffix = deque()
-        max_left = 0
-        max_right = 0
-
-        for i in range(len(height)):
-            prefix.append(max_left)
-            max_left = max(max_left,height[i])
-
-        for i in range(len(height)-1,-1,-1):
-            suffix.append(max_right)
-            max_right = max(max_right, height[i])
-        suffix.reverse()
-
+        l, r = 0, len(height)-1
+        max_left, max_right = height[l], height[r]
         count = 0
-        for i in range(len(height)):
-            if min(prefix[i],suffix[i])-height[i] <=0:
-                continue
-            count+= min(prefix[i],suffix[i])-height[i]
-        
+        while l < r:
+            if max_left <= max_right:
+                l += 1
+                max_left = max(max_left,height[l])
+                count += max_left - height[l]
+            else:
+                r-=1
+                max_right = max(max_right,height[r])
+                count += max_right-height[r]
         return count
 
-        # T O(n): we have to iterate through height to build the prefix and suffix lists and then get count
-        # S O(n): we build prefix and suffix lists that grow lineraly with the input
-
+        
+        
