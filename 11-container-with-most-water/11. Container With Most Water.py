@@ -15,3 +15,5 @@ class Solution:
             else:
                 j-=1
         return max_area
+
+        # T O(n), S O(1)
