@@ -14,5 +14,8 @@ class Solution:
                 count += max_right-height[r]
         return count
 
-        
+        # T O(n): we use 2 pointers to reach each element in height at most once
+        # S O(1): we iterate in place using 2 pointers, no new data structures were used
+
+
         
