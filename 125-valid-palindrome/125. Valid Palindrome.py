@@ -10,7 +10,7 @@ class Solution:
             else:
                 if s[i].lower() != s[j].lower():
                     return False
-                i +=1
+                i+=1
                 j-=1
         
         return True
