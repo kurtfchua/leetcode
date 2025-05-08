@@ -7,7 +7,7 @@ class Solution:
                 i +=1
             elif not s[j].isalnum():
                 j -= 1
-            elif s[i].isalnum() and s[j].isalnum():
+            else:
                 if s[i].lower() != s[j].lower():
                     return False
                 i +=1
