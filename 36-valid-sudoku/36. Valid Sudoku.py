@@ -30,3 +30,6 @@ class Solution:
                             box_set.add(board[i+row][j+col])
         
         return True
+
+        # T O(1) - size of input never changes the algorithm it is always 9x9
+        # S O(1) - the sets we always make will always be at most length 9
