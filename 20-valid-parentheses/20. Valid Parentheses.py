@@ -16,4 +16,7 @@ class Solution:
                 return False
         
         return not stack
+
+        # T O(n)
+        # S O(n)
         
