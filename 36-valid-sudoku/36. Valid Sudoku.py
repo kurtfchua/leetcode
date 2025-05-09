@@ -1,23 +1,19 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        # keep hashmaps for row, cols, and box values
-        # if number is seen before in a row, col, or box hashmap sets we return false
-        # otherwise return true
-        row_map = defaultdict(set)
-        col_map = defaultdict(set)
-        box_map = defaultdict(set)
+        rows_set = defaultdict(set)
+        cols_set = defaultdict(set)
+        boxes_set = defaultdict(set)
 
         for i in range(9):
             for j in range(9):
                 if board[i][j] == ".":
                     continue
-                if (board[i][j] in row_map[i] or
-                    board[i][j] in col_map[j] or
-                    board[i][j] in box_map[(i//3,j//3)]):
+                if (board[i][j] in rows_set[i] or
+                    board[i][j] in cols_set[j] or
+                    board[i][j] in boxes_set[(i//3,j//3)]):
                     return False
-                row_map[i].add(board[i][j])
-                col_map[j].add(board[i][j])
-                box_map[(i//3,j//3)].add(board[i][j])
+                rows_set[i].add(board[i][j])
+                cols_set[j].add(board[i][j])
+                boxes_set[(i//3,j//3)].add(board[i][j])
         
         return True
-        
