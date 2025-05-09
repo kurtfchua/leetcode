@@ -18,9 +18,7 @@ class MinStack:
     def getMin(self) -> int:
         return self.minStack[-1]
         
-# Space Complexity: We create 2 stacks, both being constantly updated as much as we input a command. O(n)
-
-# Time Complexity: All operations are standard operations on the last value on a stack. O(1)
+        
         
 
 
