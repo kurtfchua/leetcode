@@ -1,6 +1,6 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        mp = {
+        hashmap = {
             '(':')',
             '{':'}',
             '[':']'
@@ -8,12 +8,11 @@ class Solution:
         stack = []
 
         for c in s: 
-            if c in mp:
-                stack.append(mp[c])
-            elif stack and stack[-1] == c:
+            if c in hashmap:
+                stack.append(hashmap[c])
+            elif stack and stack[-1]==c:
                 stack.pop()
             else:
                 return False
         
         return not stack
-        
