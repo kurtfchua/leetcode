@@ -16,4 +16,6 @@ class Solution:
             else:
                 stack.append(int(token))
 
-        return stack[0]                   
+        return stack[0] 
+
+        # T O(n), S O(n)                  
