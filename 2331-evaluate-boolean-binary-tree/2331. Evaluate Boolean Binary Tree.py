@@ -10,8 +10,7 @@ class Solution:
             return root
         
         if not root.left and not root.right:
-            return True if root.val == 1 else False
-
+            return root.val == 1
         if root.val == 2:
             return self.evaluateTree(root.left) or self.evaluateTree(root.right)
         elif root.val == 3:
