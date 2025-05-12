@@ -15,7 +15,6 @@ class Solution:
             if not root.left and not root.right:
                 res.append("->".join(path))
             else:
-
                 dfs(root.left,path)
                 dfs(root.right,path)
             path.pop()
