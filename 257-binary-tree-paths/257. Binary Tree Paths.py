@@ -11,14 +11,17 @@ class Solution:
         def dfs(root, path):
             if not root:
                 return root
-            path+=str(root.val)
+            path.append(str(root.val))
             if not root.left and not root.right:
-                res.append(path)
+                res.append("->".join(path))
             else:
-                path+= "->"
+
                 dfs(root.left,path)
                 dfs(root.right,path)
-        dfs(root,"")
+            path.pop()
+
+        dfs(root,[])
+
         return res
             
 
