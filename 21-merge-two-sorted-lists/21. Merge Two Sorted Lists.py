@@ -28,5 +28,5 @@ class Solution:
         
         return dummy.next
 
-        # S O(m+n) we create a new linked list with the length of the sum of both lists
+        # S O(1) we create a new linked list from just reassigning pointers of exiting nodes
         # T O(m+n) we have to go through both lists to create the new list
