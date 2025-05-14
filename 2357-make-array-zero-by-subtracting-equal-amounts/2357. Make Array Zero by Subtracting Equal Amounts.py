@@ -1,9 +1,10 @@
 class Solution:
     def minimumOperations(self, nums: List[int]) -> int:
-        unique_positives = set()
+        unique_pos = set()
 
         for num in nums:
             if num > 0:
-                unique_positives.add(num)
+                unique_pos.add(num)
         
-        return len(unique_positives)
+        return len(unique_pos)
+        
