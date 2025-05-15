@@ -8,19 +8,25 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        stack = []
-        current = head
-        while current:
-            stack.append(current)
-            current = current.next
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
         
-        current = head
-        for _ in range(len(stack)//2):
+        prev = None
+        current = slow 
+        while current:
             tmp = current.next
-            node = stack.pop()
-            current.next = node
-            node.next = tmp 
+            current.next = prev
+            prev = current 
             current = tmp
-        current.next = None
-            
+        
+        l1, l2 = head, prev
+        while l2 and l2.next:
+            tmp1 = l1.next
+            tmp2 = l2.next
+            l1.next = l2
+            l2.next = tmp1
+            l1 = tmp1
+            l2 = tmp2
         
