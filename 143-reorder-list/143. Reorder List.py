@@ -13,20 +13,17 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         
-        prev = None
-        current = slow 
-        while current:
-            tmp = current.next
-            current.next = prev
-            prev = current 
-            current = tmp
+        second = slow.next
+        prev = slow.next = None
+        while second:
+            tmp = second.next
+            second.next, prev = prev, second
+            second = tmp
         
-        l1, l2 = head, prev
-        while l2 and l2.next:
-            tmp1 = l1.next
-            tmp2 = l2.next
-            l1.next = l2
-            l2.next = tmp1
-            l1 = tmp1
-            l2 = tmp2
+        first, second = head, prev
+        while second:
+            tmp1, tmp2 = first.next, second.next
+            first.next, second.next = second, tmp1
+            first, second = tmp1, tmp2
+
         
