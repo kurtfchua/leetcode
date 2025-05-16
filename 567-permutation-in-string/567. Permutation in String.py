@@ -2,21 +2,36 @@ class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
             return False
+        
+        s1_counts, s2_counts = [0]*26, [0]*26
 
-        counts1 = Counter(s1)
-        counts2 = Counter()
-        for i in range(len(s2)):
-            counts2[s2[i]] += 1
-            if i >= len(s1):
-                left_c = s2[i-len(s1)]
-                if counts2[left_c] == 1:
-                    del counts2[left_c]
-                else:
-                    counts2[left_c] -= 1
+        for i in range(len(s1)):
+            s1_counts[ord(s1[i])-ord('a')] += 1
+            s2_counts[ord(s2[i])-ord('a')] += 1
+
+        matches = 0
+        for i in range(26):
+            if s1_counts[i] == s2_counts[i]:
+                matches += 1
+
+        l = 0 
+        for r in range(len(s1), len(s2)):
+            if matches == 26: return True 
+
+            index = ord(s2[r]) - ord('a')
+            s2_counts[index] += 1
+            if s2_counts[index] == s1_counts[index]:
+                matches += 1
+            elif s2_counts[index] == s1_counts[index] + 1:
+                matches -= 1
             
-            if counts1 == counts2:
-                return True
+            index = ord(s2[l]) - ord('a')
+            s2_counts[index] -= 1
+            if s2_counts[index] == s1_counts[index]:
+                matches += 1
+            elif s2_counts[index] == s1_counts[index] - 1:
+                matches -= 1
+            
+            l+=1
         
-        return False
-
-        
+        return matches == 26
