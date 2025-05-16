@@ -28,9 +28,6 @@ class LRUCache:
             return -1
 
         node = self.cache[key]
-        if node.next == self.right and self.right.prev == node:
-            return node.val
-
         self.remove(node)
         self.add(node)
 
@@ -43,7 +40,7 @@ class LRUCache:
             self.remove(node)
         else:
             node = Node(key, value)
-            self.cache[node.key] = node
+            self.cache[key] = node
         
         self.add(node)
 
