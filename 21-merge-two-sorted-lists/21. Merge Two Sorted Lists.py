@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(None)
+        dummy = ListNode()
         current = dummy
 
         while list1 and list2:
@@ -20,4 +20,3 @@ class Solution:
         current.next = list1 if list1 else list2
 
         return dummy.next
-        
