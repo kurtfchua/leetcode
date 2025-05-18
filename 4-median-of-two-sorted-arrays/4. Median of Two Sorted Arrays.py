@@ -1,26 +1,27 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        merged_nums = []
-        i = j = 0
-        while i < len(nums1) and j < len(nums2):
-            if nums1[i]<=nums2[j]:
-                merged_nums.append(nums1[i])
-                i+=1
-            else:
-                merged_nums.append(nums2[j])
-                j+=1
-        merged_nums.extend(nums1[i:])
-        merged_nums.extend(nums2[j:])
+        A, B = nums1, nums2
+        total = len(A) + len(B)
+        half = total // 2
 
-        if len(merged_nums) % 2 != 0:
-            median = len(merged_nums)//2
-            return float(merged_nums[median])
-        else:
-            medians = len(merged_nums)//2, (len(merged_nums)//2) - 1
-            avg = (merged_nums[medians[0]]+merged_nums[medians[1]])/2
-            return avg
-
-
-
-            
+        if len(B) < len(A):
+            A, B = B, A
         
+        l, r = 0, len(A) - 1
+        while True:
+            i = (l+r) // 2
+            j = half - i - 2
+
+            A_left = A[i] if i >= 0 else float('-inf')
+            A_right = A[i+1] if i + 1< len(A) else float('inf')
+            B_left = B[j] if j >= 0 else float('-inf')
+            B_right = B[j+1] if j + 1 < len(B) else float('inf')
+
+            if A_left <= B_right and B_left <= A_right:
+                if total % 2:
+                    return min(A_right, B_right)
+                return (min(A_right, B_right) + max(A_left, B_left)) / 2       
+            elif A_left > B_right:
+                r = i - 1
+            else:
+                l = i + 1
