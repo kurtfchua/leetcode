@@ -7,6 +7,7 @@
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         res = []
+
         def dfs(root, depth):
             if not root: return 
 
@@ -15,7 +16,7 @@ class Solution:
             
             dfs(root.right, depth + 1)
             dfs(root.left, depth + 1)
-    
+        
         dfs(root, 0)
         return res
         
