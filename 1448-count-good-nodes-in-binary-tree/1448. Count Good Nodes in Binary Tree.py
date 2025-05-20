@@ -19,6 +19,16 @@ class Solution:
                         max_so_far = max(max_so_far, node.val)
                         queue.append((node.left, max_so_far))  
                         queue.append((node.right, max_so_far))
-            return count            
-        
-        return bfs(root, 0)
+            return count  
+
+        def dfs(root, max_val):
+            if not root: return 0 
+
+            res = 1 if root.val >= max_val else 0
+            max_val = max(max_val, root.val)
+            res += dfs(root.left, max_val) + dfs(root.right, max_val)          
+
+            return res
+            
+        #return bfs(root, 0)
+        return dfs(root, root.val)
