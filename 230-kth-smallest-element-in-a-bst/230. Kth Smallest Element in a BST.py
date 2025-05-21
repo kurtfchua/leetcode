@@ -6,20 +6,19 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        path = []
-        def dfs(root):
-            if not root: return 
+        self.count = 0
+        self.res = None
 
-            path.append(root.val)
+        def dfs(root):
+            if not root: return
 
             dfs(root.left)
+            self.count += 1
+            if self.count == k:
+                self.res = root.val
+                return
+
             dfs(root.right)
         
         dfs(root)
-        heapq.heapify(path)
-        res = 0
-        for _ in range(k):
-            res = heapq.heappop(path)
-        
-        return res
-        
+        return self.res
