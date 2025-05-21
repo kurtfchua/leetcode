@@ -1,26 +1,11 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        hashmap = {}
-
-        for num in nums:
-            hashmap[num] = hashmap.get(num,0) + 1
-
-        bucket = [[] for _ in range(len(nums)+1)]
-
-        for key, value in hashmap.items():
-            bucket[value].append(key)
-        
+        freq = Counter(nums)
+        heap = [(-v, i) for i, v in freq.items()]
+        heapq.heapify(heap)
         res = []
-        for i in range(len(bucket)-1, -1, -1):
-            for num in bucket[i]:
-                res.append(num)
-                if len(res) == k:
-                    return res
-        
+        for _ in range(k):
+            res.append(heapq.heappop(heap)[1])
         return res
-
-        # T O(n) - each for loop is iterating through the length of the list. except the last for loop where we touch each element in the list only once. the entire nested for loop is O(n).
-        # S O(n) - we create a hashmap, bucket and res lists of size n.
-
 
         
