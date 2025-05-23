@@ -10,21 +10,22 @@ from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node: return None
-
+        
         hashmap = {}
 
-        def bfs(node):
-            queue = deque([node])
-            hashmap[node] = Node(node.val)
+        def bfs(source):
+            queue = deque([source])
+            hashmap[source] = Node(source.val)
 
             while queue: 
-                for _ in range(len(queue)):
+                for i in range(len(queue)):
                     node = queue.popleft()
-                    for neighbor in node.neighbors: 
+                    for neighbor in node.neighbors:
                         if neighbor not in hashmap:
                             hashmap[neighbor] = Node(neighbor.val)
                             queue.append(neighbor)
                         hashmap[node].neighbors.append(hashmap[neighbor])
-        bfs(node)
+            return hashmap[source]
 
-        return hashmap[node]
+        return bfs(node)
+        
