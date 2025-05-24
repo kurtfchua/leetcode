@@ -1,20 +1,20 @@
 class MedianFinder:
 
     def __init__(self):
-        self.stream = []
+        self.left, self.right = [], []
         
     def addNum(self, num: int) -> None:
-        self.stream.append(num)
-
-    def findMedian(self) -> float:
-        self.stream.sort()
-        size = len(self.stream)
-        if len(self.stream) % 2 == 0: 
-            return (self.stream[size//2] + self.stream[(size//2)-1]) / 2
-        else: 
-            return self.stream[size//2]
-
+        heapq.heappush(self.left, -num)
+        heapq.heappush(self.right, -heapq.heappop(self.left))
         
+        if len(self.left) < len(self.right):
+            heapq.heappush(self.left, -heapq.heappop(self.right))
+        
+    def findMedian(self) -> float:
+        if (len(self.left) + len(self.right)) % 2 != 0:
+            return -self.left[0]
+        else: 
+            return (-self.left[0] + self.right[0]) / 2
 
 
 # Your MedianFinder object will be instantiated and called as such:
