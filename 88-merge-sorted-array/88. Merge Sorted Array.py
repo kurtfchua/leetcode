@@ -16,7 +16,6 @@ class Solution:
         merged.extend(nums1[i:m])
         merged.extend(nums2[j:])
 
-        print(merged)
         for i in range(m+n):
             nums1[i] = merged[i]
 
