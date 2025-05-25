@@ -9,7 +9,8 @@ class Solution:
                board[r][c] != word[i] or
                board[r][c] == "#"):
                     return False
-    
+
+            temp = board[r][c]
             board[r][c] = "#"
             found_word = (
                 dfs(r+1, c, i+1) or
@@ -17,7 +18,7 @@ class Solution:
                 dfs(r-1, c, i+1) or
                 dfs(r, c-1, i+1)
                 )
-            board[r][c] = word[i]
+            board[r][c] = temp
 
             return found_word
         
