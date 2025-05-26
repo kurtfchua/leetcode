@@ -13,5 +13,19 @@ class Solution:
                     res.append(perm_copy)
 
             return res 
+            
+        self.res = []
+        def backtrack(nums, idx): 
+            if idx == len(nums):
+                self.res.append(nums.copy())
+                return 
+            
+            for i in range(idx, len(nums)):
+                nums[i], nums[idx] = nums[idx], nums[i]
+                backtrack(nums, idx+1)
+                nums[i], nums[idx] = nums[idx], nums[i]
+        
+        backtrack(nums, 0)
 
-        return recur(nums)       
+        return self.res
+
