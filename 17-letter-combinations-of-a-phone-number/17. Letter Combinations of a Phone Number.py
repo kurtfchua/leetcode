@@ -21,6 +21,7 @@ class Solution:
                     for c in keyboard[digit]:
                         tmp.append(combo+c)
                 self.res = tmp
+       
         res = []
         def dfs(i, curr_str):
             if len(curr_str) == len(digits): 
@@ -31,6 +32,8 @@ class Solution:
                 dfs(i+1, curr_str+c)
         
         dfs(0, "")
+
         return res
+
 
             
