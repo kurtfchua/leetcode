@@ -4,19 +4,20 @@ class Solution:
 
         for src, dst, time in times: 
             adj_list[src].append((dst, time))
-        
-        shortest = {}
+
         min_heap = [(0, k)]
+        shortest_map = {}
 
         while min_heap: 
-            time1, node1 = heapq.heappop(min_heap)
-            if node1 in shortest:
-                continue
+            src_time, src_node = heapq.heappop(min_heap) 
             
-            shortest[node1] = time1
+            if src_node in shortest_map: 
+                continue
 
-            for node2, time2 in adj_list[node1]:
-                if node2 not in shortest:
-                    heapq.heappush(min_heap, (time2+time1, node2))
+            shortest_map[src_node] = src_time
 
-        return -1 if len(shortest) != n else max(shortest.values())        
+            for dst_node, dst_time in adj_list[src_node]:
+                if dst_node not in shortest_map: 
+                    heapq.heappush(min_heap, (dst_time + src_time, dst_node))
+        
+        return -1 if len(shortest_map) != n else max(shortest_map.values())
