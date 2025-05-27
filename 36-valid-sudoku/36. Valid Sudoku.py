@@ -4,16 +4,18 @@ class Solution:
         cols_set = defaultdict(set)
         boxes_set = defaultdict(set)
 
-        for i in range(9):
-            for j in range(9):
-                if board[i][j] == ".":
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".": 
                     continue
-                if (board[i][j] in rows_set[i] or
-                    board[i][j] in cols_set[j] or
-                    board[i][j] in boxes_set[(i//3,j//3)]):
+
+                if (board[r][c] in rows_set[r] or 
+                    board[r][c] in cols_set[c] or 
+                    board[r][c] in boxes_set[(r//3, c//3)]):
                     return False
-                rows_set[i].add(board[i][j])
-                cols_set[j].add(board[i][j])
-                boxes_set[(i//3,j//3)].add(board[i][j])
+
+                rows_set[r].add(board[r][c])
+                cols_set[c].add(board[r][c])
+                boxes_set[(r//3,c//3)].add(board[r][c])
         
         return True
