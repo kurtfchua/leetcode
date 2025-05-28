@@ -12,16 +12,16 @@ class Solution:
                 if rooms[r][c] == 0: 
                     queue.append((r,c))
                     visited.add((r,c))
-        level = 0
+        level = 1
         while queue: 
             for i in range(len(queue)):
                 r, c = queue.popleft()
-                rooms[r][c] = level
+              
                 directions = [(0,1), (1,0), (0,-1), (-1,0)]
                 for dr, dc in directions: 
                     if (0 <= r+dr < rows and 0 <= c+dc < cols and 
                     rooms[r+dr][c+dc] != -1 and (r+dr,c+dc) not in visited): 
-                        
+                        rooms[r+dr][c+dc] = level
                         visited.add((r+dr,c+dc))
                         queue.append((r+dr,c+dc))
             level += 1
