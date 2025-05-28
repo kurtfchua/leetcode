@@ -23,5 +23,5 @@ class Solution:
                         copy[neighbor] = Node(neighbor.val)
                         queue.append(neighbor)
                     copy[n].neighbors.append(copy[neighbor])
-                    
+                
         return copy[node]
