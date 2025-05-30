@@ -1,18 +1,22 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        hashmap = {
-            '(':')',
-            '{':'}',
-            '[':']'
+        hm = {
+            '(': ')',
+            '{': '}',
+            '[': ']'
         }
+
         stack = []
 
         for c in s: 
-            if c in hashmap:
-                stack.append(hashmap[c])
-            elif stack and stack[-1]==c:
+            if c in hm: 
+                stack.append(hm[c])
+            elif stack and stack[-1] == c:
                 stack.pop()
             else:
                 return False
         
-        return not stack
+        return len(stack) == 0
+
+
+        
