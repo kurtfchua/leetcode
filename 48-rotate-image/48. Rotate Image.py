@@ -3,11 +3,19 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        n = len(matrix)
-
-        for i in range(n):
-            for j in range(i+1, n):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        # transpose 
+        for i in range(len(matrix)):
+            for j in range(i,len(matrix)):
+                matrix[i][j],matrix[j][i] = matrix[j][i], matrix[i][j]
+                
+        # reverse row
+       
+        for i in range(len(matrix)):
+            start = 0
+            end = len(matrix[i]) - 1
+            while start<end:
+                matrix[i][start], matrix[i][end] = matrix[i][end],matrix[i][start]
+                start +=1
+                end -=1
+            
         
-        for row in matrix: 
-            row.reverse()
