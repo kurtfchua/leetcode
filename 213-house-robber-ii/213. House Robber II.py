@@ -23,4 +23,16 @@ class Solution:
             return mem[i]
 
         mem1, mem2 = {}, {}
-        return max(dp_top(0, skip_first, mem1), dp_top(0, skip_end, mem2))
+        #return max(dp_top(0, skip_first, mem1), dp_top(0, skip_end, mem2))
+
+        def dp_bottom(nums):
+            rob1, rob2 = 0, 0
+
+            for num in nums: 
+                temp = max(num+rob1, rob2)
+                rob1 = rob2
+                rob2 = temp
+            
+            return rob2
+        
+        return max(dp_bottom(skip_first), dp_bottom(skip_end))
