@@ -1,7 +1,5 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums) == 1: 
-            return nums[0]
         
         def dfs(i, nums):
             if i >= len(nums):
@@ -35,4 +33,4 @@ class Solution:
             
             return rob2
         
-        return max(dp_bottom(skip_first), dp_bottom(skip_end))
+        return max(nums[0], dp_bottom(skip_first), dp_bottom(skip_end))
