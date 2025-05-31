@@ -25,8 +25,15 @@ class Solution:
                 a, b = b, cost[i] + min(a, b)
 
             return min(a,b)
+        
+        def bottom_up_2():
+            cost.append(0)
+            for i in range(len(cost)-3, -1, -1):
+                cost[i] += min(cost[i+1], cost[i+2])
+            
+            return min(cost[0], cost[1])
 
-        return min(bottom_up(0), bottom_up(1))
+        return bottom_up_2()
 
         #return min(top_down(0), top_down(1))
 
