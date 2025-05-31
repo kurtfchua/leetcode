@@ -18,8 +18,17 @@ class Solution:
 
             return mem[i]
         
-        return min(top_down(0), top_down(1))
+        def bottom_up(i):
+            a, b = 0, 0
+            
+            for i in range(len(cost)-1, -1, -1):
+                a, b = b, cost[i] + min(a, b)
 
+            return min(a,b)
+
+        return min(bottom_up(0), bottom_up(1))
+
+        #return min(top_down(0), top_down(1))
 
         #return min(basic(0), basic(1))
 
