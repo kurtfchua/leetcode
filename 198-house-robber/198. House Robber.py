@@ -19,4 +19,15 @@ class Solution:
 
             return mem[i]
         
-        return dp_top(0)
+        #return dp_top(0)
+        
+        def bottom_down():
+            rob1, rob2 = 0, 0
+            for num in nums: 
+                temp = max(num + rob1, rob2)
+                rob1 = rob2
+                rob2 = temp
+            return rob2
+
+        
+        return bottom_down()
