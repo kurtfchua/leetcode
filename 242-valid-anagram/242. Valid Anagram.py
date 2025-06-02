@@ -3,14 +3,13 @@ class Solution:
         counts = [0]*26
 
         for c in s:
-            counts[ord(c)-ord('a')] += 1
-
-        for c in t:
-            counts[ord(c)-ord('a')] -= 1        
-            if counts[ord(c)-ord('a')] < 0:
-                return False
+            counts[ord(c)-ord('a')]+=1
         
-        for count in counts:
-            if count != 0:
+        for c in t:
+            index = ord(c)-ord('a')
+            if counts[index] < 0:
                 return False
-        return True
+            counts[index] -= 1
+        
+        return not any(counts)
+        
