@@ -8,5 +8,4 @@ class Solution:
             elif numbers[l] + numbers[r] < target:
                 l += 1
             else: 
-                r -= 1
-        
+                r -= 1        
