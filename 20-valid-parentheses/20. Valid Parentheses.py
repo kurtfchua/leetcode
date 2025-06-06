@@ -1,22 +1,14 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        hm = {
-            '(': ')',
-            '{': '}',
-            '[': ']'
-        }
-
+        paren = {'(':')', '{':'}', '[':']'}
         stack = []
 
-        for c in s: 
-            if c in hm: 
-                stack.append(hm[c])
+        for c in s:
+            if c in paren: 
+                stack.append(paren[c])
             elif stack and stack[-1] == c:
                 stack.pop()
             else:
                 return False
         
-        return len(stack) == 0
-
-
-        
+        return not stack        
