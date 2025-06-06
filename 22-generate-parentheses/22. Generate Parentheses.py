@@ -1,23 +1,25 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
-        stack = []
+        subset = []
 
-        def backtrack(open_count,closed_count):
-            if open_count == closed_count == n:
-                res.append("".join(stack))
+        def dfs(opened, closed):
+            if opened == n and closed == n:
+                res.append("".join(subset.copy()))
                 return 
             
-            if open_count < n:
-                stack.append("(")
-                backtrack(open_count+1,closed_count)
-                stack.pop()
-                
-            if closed_count < open_count:
-                stack.append(")")
-                backtrack(open_count,closed_count+1)
-                stack.pop()
-        backtrack(0,0)
+            if opened < n: 
+                subset.append("(")
+                dfs(opened+1, closed)
+                subset.pop()
 
-        return res
+            if closed < opened: 
+                subset.append(")")
+                dfs(opened, closed+1)
+                subset.pop()
+            
+        dfs(0,0)
+
+        return res 
         
+
