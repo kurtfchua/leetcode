@@ -4,7 +4,7 @@ class Solution:
         combination = []
 
         def dfs(opened, closed):
-            if opened == n and closed == n: 
+            if opened == closed == n: 
                 res.append("".join(combination))
                 return 
             
@@ -13,11 +13,13 @@ class Solution:
                 dfs(opened+1, closed)
                 combination.pop()
             
-            if closed < opened:
+            if closed < opened: 
                 combination.append(")")
                 dfs(opened, closed+1)
                 combination.pop()
 
-        dfs(0, 0)
+        dfs(0,0)
 
-        return res        
+        return res
+
+        
