@@ -5,9 +5,10 @@ class Solution:
 
         for i, v in enumerate(temperatures):
             while stack and v > stack[-1][0]:
-                _, idx = stack.pop()
-                res[idx] = i-idx
+                res[stack[-1][1]] = i - stack[-1][1]
+                stack.pop()
             stack.append((v, i))
         
         return res
+
         
