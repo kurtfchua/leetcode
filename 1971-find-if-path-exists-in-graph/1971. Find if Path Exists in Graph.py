@@ -6,7 +6,7 @@ class Solution:
             adj_list[u].append(v)
             adj_list[v].append(u)
 
-        def dfs(node, target, visited): 
+        def dfs(node, target, visited):
             if node in visited: 
                 return False
             if node == target: 
@@ -16,7 +16,7 @@ class Solution:
             for neighbor in adj_list[node]:
                 if dfs(neighbor, target, visited):
                     return True
-
+            
             return False
         
         return dfs(source, destination, set())
