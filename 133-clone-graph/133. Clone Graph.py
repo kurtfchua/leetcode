@@ -11,17 +11,23 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node: return None
 
-        copy = {}
-        queue = deque([node])
-        copy[node] = Node(node.val)
+        clones = {}
 
-        while queue: 
-            for i in range(len(queue)):
+        def bfs(node):
+            queue = deque([node])
+            visited = set([node])
+            clones[node] = Node(node.val)
+            
+            while queue: 
                 n = queue.popleft()
                 for neighbor in n.neighbors: 
-                    if neighbor not in copy:
-                        copy[neighbor] = Node(neighbor.val)
+                    if neighbor not in clones: 
+                        clones[neighbor] = Node(neighbor.val)
                         queue.append(neighbor)
-                    copy[n].neighbors.append(copy[neighbor])
-                
-        return copy[node]
+                    clones[n].neighbors.append(clones[neighbor])
+        bfs(node)
+
+        return clones[node]
+                    
+    
+        
