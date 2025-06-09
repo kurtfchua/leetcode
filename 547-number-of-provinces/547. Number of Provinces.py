@@ -1,25 +1,24 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        rows, cols = len(isConnected), len(isConnected[0])
         visited = set()
-        n = len(isConnected)
 
         def dfs(i):
             if i in visited: 
-                return False
+                return 
             
             visited.add(i)
 
-            for city, val in enumerate(isConnected[i]): 
-                if city not in visited and val == 1: 
-                   dfs(city)
-            
-            return True
+            for idx, val in enumerate(isConnected[i]):
+                if val == 1: 
+                    if idx not in visited: 
+                        dfs(idx)
         
-        provinces = 0
-        for i in range(n):
-            if i not in visited: 
-                if dfs(i):
-                    provinces += 1
-
-        return provinces
-            
+        count = 0
+        for r in range(rows): 
+                if r not in visited: 
+                    dfs(r)
+                    count += 1
+        
+        return count 
+        
