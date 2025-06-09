@@ -19,10 +19,10 @@ class Solution:
                 r, c = queue.popleft()
                 directions = [(0,1),(1,0),(-1,0),(0,-1)]
                 for dr, dc in directions: 
-                    if 0 <= r+dr < rows and 0 <= c+dc < cols and rooms[r+dr][c+dc] == 2**31 - 1 and (r+dr,c+dc) not in visited: 
+                    if 0 <= r+dr < rows and 0 <= c+dc < cols and rooms[r+dr][c+dc] != -1 and (r+dr,c+dc) not in visited: 
                         rooms[r+dr][c+dc] = level
                         queue.append((r+dr, c+dc))
                         visited.add((r+dr, c+dc))
             level += 1
         
-        return rooms
+        return
