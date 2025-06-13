@@ -1,16 +1,18 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        map = {}
+        hashmap = {}
+
         for i in range(len(s)):
-            if s[i] not in map: 
-                map[s[i]] = (i, 1)
+            if s[i] in hashmap:
+                hashmap[s[i]][0] += 1
             else:
-                map[s[i]] = (map[s[i]][0],map[s[i]][1]+1)
+                hashmap[s[i]] = [1, i] 
         
+        min_index = float('inf')
+
+        for k, v in hashmap.items():
+            if v[0] == 1:
+                min_index = min(min_index, v[1])
         
-    
-        for l in map: 
-            if map[l][1] == 1: 
-                return map[l][0]
-        return -1
+        return min_index if min_index != float('inf') else -1
         
