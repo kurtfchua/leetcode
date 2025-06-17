@@ -3,10 +3,10 @@ class Solution:
         max_profit = 0 
         l = 0
 
-        for r in range(len(prices)): 
-            if prices[r] <= prices[l]:
-                l = r
-            else: 
+        for r in range(len(prices)):
+            if prices[r] > prices[l]:
                 max_profit = max(max_profit, prices[r]-prices[l])
-
-        return max_profit        
+            else:
+                l = r
+        
+        return max_profit
