@@ -2,19 +2,13 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t): return False
 
-        char_counts = [0]*26
-        for i in range(len(s)):
-            char_counts[ord(s[i])-ord('a')] += 1
-        
-        for i in range(len(t)):
-            char_counts[ord(t[i])-ord('a')] -= 1
-            if char_counts[ord(t[i])-ord('a')] < 0: 
-                return False
-        
-        for count in char_counts: 
-            if count != 0: 
-                return False
-        
-        return True
+        s_chars = [0]*26
+        t_chars = [0]*26
 
+        for c in s: 
+            s_chars[ord(c)-ord('a')] += 1
         
+        for c in t: 
+            t_chars[ord(c)-ord('a')] += 1
+
+        return s_chars == t_chars
