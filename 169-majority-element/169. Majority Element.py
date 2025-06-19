@@ -1,16 +1,12 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
+        n = len(nums) // 2
         freq = Counter(nums)
 
-        max_idx = 0
-        res = 0
         for k, v in freq.items():
-            if v > max_idx:
-                res = k
-                max_idx = v
+            if v > n:
+                return k 
         
-        return res 
 
-
-
+        
         
