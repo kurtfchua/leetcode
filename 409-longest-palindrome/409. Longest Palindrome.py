@@ -10,5 +10,5 @@ class Solution:
             else:
                 seen.add(c)
         
-        return length + 1 if seen else len(s)
+        return length + 1 if seen else length
         
