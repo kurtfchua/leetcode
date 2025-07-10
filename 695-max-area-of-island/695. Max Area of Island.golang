@@ -1,0 +1,36 @@
+func maxAreaOfIsland(grid [][]int) int {
+    maxArea := 0
+
+    for r := 0; r < len(grid); r++{
+        for c := 0; c < len(grid[0]); c++{
+            if grid[r][c] == 1{
+                maxArea = max(maxArea, bfs(grid, r, c))
+            }
+        }
+    }
+    return maxArea
+}
+
+func bfs(grid [][]int, r int, c int) int{
+    ROWS, COLS := len(grid), len(grid[0])
+    queue := [][]int{{r, c}}
+    grid[r][c] = 0
+    area := 1
+
+    for len(queue) > 0{
+        node := queue[0]
+        queue = queue[1:]
+        r, c := node[0], node[1]
+        directions := [][]int{{0,1},{1,0},{0,-1},{-1,0}}
+        
+        for _, dir := range directions{
+            dr, dc := dir[0], dir[1]
+            if r+dr >= 0 && r+dr < ROWS && c+dc >= 0 && c+dc < COLS && grid[r+dr][c+dc] == 1{
+                queue = append(queue, []int{r+dr,c+dc})
+                grid[r+dr][c+dc] = 0
+                area++
+            }
+        }
+    }
+    return area
+}
