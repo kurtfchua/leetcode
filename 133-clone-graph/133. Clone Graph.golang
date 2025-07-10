@@ -1,0 +1,36 @@
+/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Neighbors []*Node
+ * }
+ */
+
+func cloneGraph(node *Node) *Node {
+    if node == nil{
+        return node
+    }
+    return bfs(node)
+}
+
+func bfs(node *Node) *Node {
+    hashmap := make(map[*Node]*Node)
+    hashmap[node] = &Node{Val: node.Val}
+    root := hashmap[node]
+    queue := []*Node{node}
+
+    for len(queue) > 0{
+        node := queue[0]
+        queue = queue[1:]
+        for _, neighbor := range node.Neighbors{
+            if _, ok := hashmap[neighbor]; !ok{
+                hashmap[neighbor] = &Node{Val: neighbor.Val}
+                queue = append(queue, neighbor)
+            }
+            hashmap[node].Neighbors = append(hashmap[node].Neighbors, hashmap[neighbor])
+        }
+    }
+
+    return root
+
+}
