@@ -3,18 +3,13 @@ class Solution:
         if len(s) != len(t): return False
 
         counts = [0]*26
-        
-        for c in s: 
-            counts[ord(c)-ord('a')] += 1
-        
-        for c in t: 
-            counts[ord(c)-ord('a')] -= 1
-            if counts[ord(c)-ord('a')] < 0: 
-                return False
 
+        for i in range(len(s)):
+            counts[ord(s[i])-ord('a')] += 1 
+            counts[ord(t[i])-ord('a')] -= 1 
+        
         for c in counts: 
-            if c != 0:
+            if c != 0: 
                 return False
         
         return True
-    
