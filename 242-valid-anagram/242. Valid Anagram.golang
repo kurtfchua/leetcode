@@ -3,14 +3,15 @@ func isAnagram(s string, t string) bool {
         return false
     }
 
-    hashmap := make(map[rune]int)
+    counts := make([]int, 26)
 
-    for i, c := range s{
-        hashmap[c] ++
-        hashmap[rune(t[i])] --
+    for i := 0; i < len(s); i ++{
+        counts[s[i]-'a'] ++
+        counts[t[i]-'a'] --
+
     }
 
-    for _, num := range hashmap{
+    for _, num := range counts{
         if num != 0{
             return false
         }
