@@ -8,7 +8,9 @@ func groupAnagrams(strs []string) [][]string {
             counts[c-'a']++
         }
 
-        hashmap[serialize(counts)] = append(hashmap[serialize(counts)], word)
+        key := serialize(counts)
+
+        hashmap[key] = append(hashmap[key], word)
     }
 
     res := [][]string{}
