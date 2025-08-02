@@ -7,8 +7,4 @@ class Solution:
         while len(heap) > k:
             heapq.heappop(heap)
 
-        res = []
-        for count, num in heap:
-            res.append(num)
-        
-        return res
+        return [num for count, num in heap]
