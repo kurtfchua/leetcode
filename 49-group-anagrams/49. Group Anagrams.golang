@@ -3,33 +3,30 @@ func groupAnagrams(strs []string) [][]string {
 
     for _, word := range strs{
         counts := make([]int, 26)
-        for _, c := range word{
-            counts[c-'a'] += 1
-        }
-        key := serialize(counts)
 
-        if v, ok := hashmap[key]; ok{
-            hashmap[key] = append(v, word)
-        }else{
-            hashmap[key] = []string{word}
+        for _, c := range word{
+            counts[c-'a']++
         }
+
+        hashmap[serialize(counts)] = append(hashmap[serialize(counts)], word)
     }
 
     res := [][]string{}
 
-    for _, v := range hashmap{
-        res = append(res, v)
+    for _, val := range hashmap{
+        res = append(res, val)
     }
 
     return res
+    
 }
 
 func serialize(counts []int) string{
     var sb strings.Builder
-    
+
     for _, count := range counts{
-       sb.WriteString(strconv.Itoa(count))
-       sb.WriteString("#")
+        sb.WriteString(strconv.Itoa(count))
+        sb.WriteString("#")
     }
     return sb.String()
 }
