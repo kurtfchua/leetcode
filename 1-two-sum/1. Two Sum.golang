@@ -2,12 +2,12 @@ func twoSum(nums []int, target int) []int {
     hashmap := make(map[int]int)
 
     for i, num := range nums{
-        if _, ok := hashmap[target-num]; ok{
-            return []int{hashmap[target-num], i}
+        if idx, ok := hashmap[target-num] ; ok{
+            return []int{idx, i}
         }
-
         hashmap[num] = i
     }
-    
+
     return []int{}
+    
 }
