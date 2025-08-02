@@ -1,0 +1,20 @@
+func isAnagram(s string, t string) bool {
+    if len(s) != len(t){
+        return false
+    }
+
+    hashmap := make(map[rune]int)
+
+    for i, c := range s{
+        hashmap[c] ++
+        hashmap[rune(t[i])] --
+    }
+
+    for _, num := range hashmap{
+        if num != 0{
+            return false
+        }
+    }
+    
+    return true
+}
