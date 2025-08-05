@@ -1,16 +1,15 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0]*len(nums)
-
+        prefix_prod = []
         prefix = 1
-        for i in range(len(nums)):
-            res[i] = prefix
-            prefix *= nums[i]
 
+        for num in nums:
+            prefix_prod.append(prefix)
+            prefix *= num
+        
         suffix = 1
-        for i in range(len(nums)-1,-1,-1):
-            res[i] *= suffix
+        for i in range(len(nums)-1, -1, -1):
+            prefix_prod[i] *= suffix 
             suffix *= nums[i]
         
-        return res
-        
+        return prefix_prod
