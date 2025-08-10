@@ -4,22 +4,23 @@ class Solution:
         combination = []
 
         def dfs(opened, closed):
-            if opened == closed == n: 
-                res.append("".join(combination))
-                return 
+            if opened == closed == n:
+                res.append("".join(combination.copy()))
+                return
             
-            if opened < n: 
+            if opened < n:
                 combination.append("(")
                 dfs(opened+1, closed)
                 combination.pop()
-            
-            if closed < opened: 
+
+            if closed < opened:
                 combination.append(")")
                 dfs(opened, closed+1)
                 combination.pop()
-
+        
         dfs(0,0)
 
         return res
 
+            
         
