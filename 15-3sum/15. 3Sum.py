@@ -15,10 +15,10 @@ class Solution:
                     j += 1
                     k -= 1
 
-                    while j < len(nums) - 1 and nums[j] == nums[j-1]:
+                    while j < len(nums)-1 and nums[j] == nums[j-1]:
                         j += 1
                     
-                    while k > j and nums[k] == nums[k+1]:
+                    while k > 0 and nums[k] == nums[k+1]:
                         k -= 1
 
                 elif nums[i] + nums[j] + nums[k] < 0:
