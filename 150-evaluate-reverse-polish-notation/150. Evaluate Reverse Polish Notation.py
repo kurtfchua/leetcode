@@ -5,18 +5,15 @@ class Solution:
 
         for token in tokens:
             if token in ops:
-                a, b = stack.pop(), stack.pop()
+                b, a = int(stack.pop()), int(stack.pop())
                 if token == "+":
-                    stack.append(int(a) + int(b))
-
+                    stack.append(a+b)
                 elif token == "-":
-                    stack.append(int(b) - int(a))
-
+                    stack.append(a-b)
                 elif token == "*":
-                    stack.append(int(a) * int(b))
-
+                    stack.append(a*b)
                 else:
-                    stack.append(int(int(b) / int(a)))
+                    stack.append(int(a/b))
             else:
                 stack.append(int(token))
         
